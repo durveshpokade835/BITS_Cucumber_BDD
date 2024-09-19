@@ -25,7 +25,7 @@ public class LoginPage {
 	//2.Constructor of the page Class:
 	public LoginPage(WebDriver driver) {
 		this.driver =driver;
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		
 	}
 	
