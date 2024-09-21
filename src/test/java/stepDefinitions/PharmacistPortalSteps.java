@@ -14,7 +14,7 @@ public class PharmacistPortalSteps {
 
     @Given("user has already logged in to application")
     public void user_has_already_logged_in_to_application(io.cucumber.datatable.DataTable credentials) {
-        // Assuming login steps are handled elsewhere, skipping the login method
+
         loginPage.openLoginPage();
         java.util.List<java.util.Map<String, String>> loginData = credentials.asMaps(String.class, String.class);
         String username = loginData.get(0).get("username");
@@ -64,9 +64,17 @@ public class PharmacistPortalSteps {
         pharmacyPortalPage.clickSearchButton();
     }
 
+    @When("user selects State {string}")
+    public void user_Selects_State(String state) {
+
+        pharmacyPortalPage.selectState(state);
+
+    }
+
+
     @Then("the result should get displayed")
     public void the_result_should_get_displayed() {
-        // Add verification logic for results display
+
         Assert.assertTrue(pharmacyPortalPage.isAdvancedSearchResultTableVisible(), "Advanced Search Result is not displayed");
 //        System.out.println("Results are displayed");
     }
@@ -92,4 +100,6 @@ public class PharmacistPortalSteps {
     public void the_error_pop_up_should_appear(String errorMessage) {
         Assert.assertTrue(pharmacyPortalPage.isErrorPopupDisplayed(errorMessage), "Error message not displayed");
     }
+
+
 }

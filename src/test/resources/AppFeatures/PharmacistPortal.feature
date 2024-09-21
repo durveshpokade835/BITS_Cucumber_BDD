@@ -2,8 +2,8 @@ Feature: Pharmacist Portal Advance Search Feature
 
   Background:
     Given user has already logged in to application
-    |username|password|
-    |hardstop-pharmacist6@mailinator.com|Password1#|
+      | username                            | password   |
+      | hardstop-pharmacist6@mailinator.com | Password1# |
 
   Scenario: Verify that the Advanced Search popup opens successfully.
     Given the user should be logged in
@@ -33,5 +33,11 @@ Feature: Pharmacist Portal Advance Search Feature
     And user clicks on Search button
     Then the error pop up should appear "You must provide first or last name."
 
+  Scenario: Verify if the results are displayed when user Selects State
+    Given the user should be logged in
+    When the user clicks on Patient button and ADVANCED text button
+    And user selects State "California"
+    And user clicks on Search button
+    Then the error pop up should appear "You must provide first or last name."
 
 

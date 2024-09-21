@@ -14,19 +14,21 @@ public class PharmacyPortalPage {
     private WebDriverWait wait;
 
     // By Locators
-    private By patientButton = By.xpath("//button[text()='Patient']"); // Replace with actual ID
+    private By patientButton = By.xpath("//button[text()='Patient']");
     private By advancedButton = By.xpath("//span[text()='ADVANCED']");
-    private By firstNameInput = By.xpath("//input[@name='firstname']"); // Replace with actual ID
-    private By lastNameInput = By.xpath("//input[@name='lastname']"); // Replace with actual ID
-    private By cityInput = By.xpath("//input[@name='city']"); // Replace with actual ID
-    private By searchButton = By.xpath("//button[@aria-label='search button']"); // Replace with actual ID
-    private By advancedPopup = By.xpath("//div[contains(@class,'src-routes-PharmacistPortal-LandingPage-components-units-SearchPatient-__popUp___1ABAd')]"); // Replace with actual ID
-    private By errorPopup = By.id("swal2-content"); // Replace with actual ID
+    private By firstNameInput = By.xpath("//input[@name='firstname']");
+    private By lastNameInput = By.xpath("//input[@name='lastname']");
+    private By cityInput = By.xpath("//input[@name='city']");
+    private By stateInput = By.xpath("//input[@name='state']");
+    private By searchButton = By.xpath("//button[@aria-label='search button']");
+    private By advancedPopup = By.xpath("//div[contains(@class,'src-routes-PharmacistPortal-LandingPage-components-units-SearchPatient-__popUp___1ABAd')]");
+    private By errorPopup = By.id("swal2-content");
     private By resultString = By.xpath("//div[contains(@class,'src-routes-PharmacistPortal-LandingPage-components-units-SearchPatient-__popUp___1ABAd')]/div/h3");
     private By resultTable = By.xpath("//div[@class='src-routes-PharmacistPortal-LandingPage-components-units-SearchPatient-__drugSelectContainer___2eR2Q']/table") ;
     private By acceptAgreementButton= By.xpath("//button[@class='swal2-confirm swal2-styled']");
     private By acceptAgreementPopUp = By.xpath("//div[@class='swal2-popup swal2-modal animated fadeInDown']");
     private By validationLocator = By.xpath("//div[@class='mantine-1c45i6c']/table");
+
 
     // Constructor
     public PharmacyPortalPage(WebDriver driver) {
@@ -90,5 +92,15 @@ public class PharmacyPortalPage {
         WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(resultString));
         return result.getText();
     }
-    // Add more methods if needed for validations, other actions, etc.
+
+    public void selectState(String state){
+
+        WebElement emailElement = wait.until(ExpectedConditions.visibilityOfElementLocated(stateInput));
+
+//	    	WebElement emailElement = driver.findElement(emailId);
+        emailElement.clear();
+        emailElement.sendKeys(state);
+
+    }
+
 }
