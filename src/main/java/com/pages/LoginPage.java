@@ -77,6 +77,7 @@ public class LoginPage {
 	    }
 
 	    public boolean isDashboardDisplayed() {
+//		wait.until(ExpectedConditions.visibilityOfElementLocated())
 	        return wait.until(ExpectedConditions.urlContains("pharmacist-portal"));
 //	    	boolean DashBoardUrl = driver.getCurrentUrl().contains("pharmacist-portal");
 //			System.out.println(DashBoardUrl);

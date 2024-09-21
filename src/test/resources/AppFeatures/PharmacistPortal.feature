@@ -16,7 +16,7 @@ Feature: Pharmacist Portal Advance Search Feature
     And user enters First Name "Hardstop"
     And user clicks on Search button
     Then the result should get displayed
-#    And the First Name "Hardstop" should get displayed
+    And the First Name "Hardstop" should get displayed
 
   Scenario: Verify if the results are displayed when user enters Last Name
     Given the user should be logged in
@@ -24,13 +24,14 @@ Feature: Pharmacist Portal Advance Search Feature
     And user enters Last Name "Select health test patient 1"
     And user clicks on Search button
     Then the result should get displayed
-#    And the Last Name "Select health test patient 1" should get displayed
+    And the Last Name "Select health test patient 1" should get displayed
 
   Scenario: Verify if the results are displayed when user enters City
     Given the user should be logged in
     When the user clicks on Patient button and ADVANCED text button
     And user enters City "Test City"
     And user clicks on Search button
-#    Then the error pop up should appear "You must provide a first or last name."
+    Then the error pop up should appear "You must provide first or last name."
+
 
 

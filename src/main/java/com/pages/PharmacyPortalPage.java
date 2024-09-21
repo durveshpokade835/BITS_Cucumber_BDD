@@ -22,6 +22,11 @@ public class PharmacyPortalPage {
     private By searchButton = By.xpath("//button[@aria-label='search button']"); // Replace with actual ID
     private By advancedPopup = By.xpath("//div[contains(@class,'src-routes-PharmacistPortal-LandingPage-components-units-SearchPatient-__popUp___1ABAd')]"); // Replace with actual ID
     private By errorPopup = By.id("swal2-content"); // Replace with actual ID
+    private By resultString = By.xpath("//div[contains(@class,'src-routes-PharmacistPortal-LandingPage-components-units-SearchPatient-__popUp___1ABAd')]/div/h3");
+    private By resultTable = By.xpath("//div[@class='src-routes-PharmacistPortal-LandingPage-components-units-SearchPatient-__drugSelectContainer___2eR2Q']/table") ;
+    private By acceptAgreementButton= By.xpath("//button[@class='swal2-confirm swal2-styled']");
+    private By acceptAgreementPopUp = By.xpath("//div[@class='swal2-popup swal2-modal animated fadeInDown']");
+    private By validationLocator = By.xpath("//div[@class='mantine-1c45i6c']/table");
 
     // Constructor
     public PharmacyPortalPage(WebDriver driver) {
@@ -69,5 +74,21 @@ public class PharmacyPortalPage {
         return errorElement.getText().contains(errorMessage);
     }
 
+    public void clickAcceptAgreementButton(){
+        wait.until(ExpectedConditions.elementToBeClickable(acceptAgreementButton)).click();
+    }
+
+    public boolean isTableVisible(){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(validationLocator)).isDisplayed();
+    }
+
+    public boolean isAdvancedSearchResultTableVisible(){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(resultTable)).isDisplayed();
+    }
+
+    public String getResultMessage(){
+        WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(resultString));
+        return result.getText();
+    }
     // Add more methods if needed for validations, other actions, etc.
 }

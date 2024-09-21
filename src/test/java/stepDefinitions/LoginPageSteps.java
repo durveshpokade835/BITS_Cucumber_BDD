@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import com.pages.PharmacyPortalPage;
 import org.junit.Assert;
 
 import com.pages.LoginPage;
@@ -13,6 +14,7 @@ public class LoginPageSteps {
 
 	private static String title;
 	private LoginPage loginPage = new LoginPage(DriverFactory.getDriver());
+	private PharmacyPortalPage pharmacyPortalPage = new PharmacyPortalPage(DriverFactory.getDriver());
 
 	@Given("the user is on the login page")
 	public void the_user_is_on_the_login_page() {
@@ -46,6 +48,7 @@ public class LoginPageSteps {
 	public void the_user_should_be_logged_in() {
 		// Write code here that turns the phrase above into concrete actions
 		boolean isDashBoardVisible = loginPage.isDashboardDisplayed();
+		boolean isTableVisible=  pharmacyPortalPage.isTableVisible();
 		Assert.assertTrue(isDashBoardVisible);
 		
 	}

@@ -22,6 +22,7 @@ public class PharmacistPortalSteps {
         loginPage.enterEmail(username);
         loginPage.enterPassword(password);
         loginPage.clickSignIn();
+//        pharmacyPortalPage.clickAcceptAgreementButton();
 
         System.out.println("User is logged in with credentials");
     }
@@ -66,18 +67,24 @@ public class PharmacistPortalSteps {
     @Then("the result should get displayed")
     public void the_result_should_get_displayed() {
         // Add verification logic for results display
-        System.out.println("Results are displayed");
+        Assert.assertTrue(pharmacyPortalPage.isAdvancedSearchResultTableVisible(), "Advanced Search Result is not displayed");
+//        System.out.println("Results are displayed");
     }
 
     @Then("the First Name {string} should get displayed")
     public void the_first_name_should_get_displayed(String firstName) {
         // Validate first name in result
+
+        String actualResult = pharmacyPortalPage.getResultMessage();
+        org.junit.Assert.assertTrue(actualResult.contains(firstName));
         System.out.println("First Name in result is: " + firstName);
     }
 
     @Then("the Last Name {string} should get displayed")
     public void the_last_name_should_get_displayed(String lastName) {
         // Validate last name in result
+        String actualResult = pharmacyPortalPage.getResultMessage();
+        org.junit.Assert.assertTrue(actualResult.contains(lastName));
         System.out.println("Last Name in result is: " + lastName);
     }
 
