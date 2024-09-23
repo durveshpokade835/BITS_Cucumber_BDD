@@ -20,9 +20,16 @@ public class PharmacyPortalPage {
     private By lastNameInput = By.xpath("//input[@name='lastname']");
     private By cityInput = By.xpath("//input[@name='city']");
     private By stateInput = By.xpath("//input[@name='state']");
+    private By zipCodeInput = By.xpath("//input[@name='zip_code']");
+    private By phoneNumberInput =By.xpath("//input[@name='phone']");
+    private By birthDateInput = By.xpath("//input[@name='dob']");
+    private By hpIdInput = By.xpath("//input[@name='hpid']");
+
     private By searchButton = By.xpath("//button[@aria-label='search button']");
+
     private By advancedPopup = By.xpath("//div[contains(@class,'src-routes-PharmacistPortal-LandingPage-components-units-SearchPatient-__popUp___1ABAd')]");
     private By errorPopup = By.id("swal2-content");
+
     private By resultString = By.xpath("//div[contains(@class,'src-routes-PharmacistPortal-LandingPage-components-units-SearchPatient-__popUp___1ABAd')]/div/h3");
     private By resultTable = By.xpath("//div[@class='src-routes-PharmacistPortal-LandingPage-components-units-SearchPatient-__drugSelectContainer___2eR2Q']/table") ;
     private By acceptAgreementButton= By.xpath("//button[@class='swal2-confirm swal2-styled']");
@@ -100,6 +107,31 @@ public class PharmacyPortalPage {
 //	    	WebElement emailElement = driver.findElement(emailId);
         emailElement.clear();
         emailElement.sendKeys(state);
+
+    }
+    public void enterZipCode(String zipCode){
+        WebElement zipCodeField = wait.until(ExpectedConditions.visibilityOfElementLocated(zipCodeInput));
+        zipCodeField.clear();
+        zipCodeField.sendKeys(zipCode);
+
+    }
+
+    public void enterPhoneNumber(String phone){
+        WebElement phoneNumberField = wait.until(ExpectedConditions.visibilityOfElementLocated(phoneNumberInput));
+        phoneNumberField.clear();
+        phoneNumberField.sendKeys(phone);
+
+    }
+    public void enterBirthDate(String birthDate){
+        WebElement phoneNumberField = wait.until(ExpectedConditions.visibilityOfElementLocated(birthDateInput));
+        phoneNumberField.clear();
+        phoneNumberField.sendKeys(birthDate);
+
+    }
+    public void enterHpId(String hpId){
+        WebElement phoneNumberField = wait.until(ExpectedConditions.visibilityOfElementLocated(hpIdInput));
+        phoneNumberField.clear();
+        phoneNumberField.sendKeys(hpId);
 
     }
 

@@ -102,4 +102,75 @@ public class PharmacistPortalSteps {
     }
 
 
+    @And("the City Name {string} should get displayed")
+    public void theCityNameShouldGetDisplayed(String city) {
+
+        String actualResult = pharmacyPortalPage.getResultMessage();
+        org.junit.Assert.assertTrue(actualResult.contains(city));
+        System.out.println("City Name in result is: " + city);
+        
+    }
+
+    @And("the State {string} should get displayed")
+    public void theStateShouldGetDisplayed(String state) {
+
+        String actualResult = pharmacyPortalPage.getResultMessage();
+        org.junit.Assert.assertTrue(actualResult.contains("CA"));
+        System.out.println("State Name in result is: " + state);
+        
+    }
+
+    @And("User enters {string} as Zip Code")
+    public void userEntersAsZipCode(String zipCode) {
+        pharmacyPortalPage.enterZipCode(zipCode);
+        
+    }
+
+    @And("the ZipCode {string} should get displayed")
+    public void theZipCodeShouldGetDisplayed(String zipCode) {
+        String actualResult = pharmacyPortalPage.getResultMessage();
+        org.junit.Assert.assertTrue(actualResult.contains(zipCode));
+        System.out.println("Zip Code in result is: " + zipCode);
+    }
+
+    @And("User enters {string} as Phone")
+    public void userEntersAsPhone(String phone) {
+        pharmacyPortalPage.enterPhoneNumber(phone);
+    }
+
+    @And("the Phone {string} should get displayed")
+    public void thePhoneShouldGetDisplayed(String phone) {
+        String actualResult = pharmacyPortalPage.getResultMessage();
+        org.junit.Assert.assertTrue(actualResult.contains(phone));
+        System.out.println("Phone Number in result is: " + phone);
+    }
+
+    @And("User enters {string} as Birth Date")
+    public void userEntersAsBirthDate(String birthDate) {
+
+        pharmacyPortalPage.enterBirthDate(birthDate);
+    }
+
+    @And("the date {string} should get displayed")
+    public void theDateShouldGetDisplayed(String birthDate) {
+        String actualResult = pharmacyPortalPage.getResultMessage();
+        org.junit.Assert.assertTrue(actualResult.contains(birthDate));
+        System.out.println("Phone Number in result is: " + birthDate);
+    }
+
+    @And("User enters {string} as HPID")
+    public void userEntersAsHPID(String hpId) {
+
+        pharmacyPortalPage.enterHpId(hpId);
+
+    }
+
+    @And("the HPID {string} should get displayed")
+    public void theHPIDShouldGetDisplayed(String hpId) {
+        String actualResult = pharmacyPortalPage.getResultMessage();
+        org.junit.Assert.assertTrue(actualResult.contains(hpId));
+        System.out.println("Phone Number in result is: " + hpId);
+    }
+
+
 }
