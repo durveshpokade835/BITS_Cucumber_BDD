@@ -1,7 +1,7 @@
 package stepDefinitions;
 
 import com.pages.PharmacyPortalPage;
-import com.qa.util.ExtentReportManager;
+//import com.qa.util.ExtentReportManager;
 import org.junit.Assert;
 
 import com.pages.LoginPage;
@@ -33,9 +33,9 @@ public class LoginPageSteps {
     @When("the user enters the valid email {string}")
     public void the_user_enters_the_valid_email(String userName) {
 
-        ExtentReportManager.createTest("Test Login Functionality");
+//        ExtentReportManager.createTest("Test Login Functionality");
         loginPage.enterEmail(userName);
-        ExtentReportManager.log("User has entered username and password");
+//        ExtentReportManager.log("User has entered username and password");
 
     }
 

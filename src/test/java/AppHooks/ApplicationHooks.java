@@ -60,7 +60,7 @@ package AppHooks;
 import java.util.Arrays;
 import java.util.Properties;
 
-import com.qa.util.ExtentReportManager;
+//import com.qa.util.ExtentReportManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -76,7 +76,7 @@ public class ApplicationHooks {
 
     private DriverFactory driverFactory;
     private WebDriver driver;
-    private ExtentReportManager extentReportManager;
+//    private ExtentReportManager extentReportManager;
     private ConfigReader configReader;
     Properties prop;
 
@@ -92,13 +92,13 @@ public class ApplicationHooks {
         String browserName = prop.getProperty("browser");
         driverFactory = new DriverFactory();
         driver = driverFactory.init_driver(browserName);
-        extentReportManager = new ExtentReportManager();
-        extentReportManager.initExtentReports();
+//        extentReportManager = new ExtentReportManager();
+//        extentReportManager.initExtentReports();
     }
 
     @After(order = 0)
     public void quitBrowser() {
-        ExtentReportManager.flush();
+//        ExtentReportManager.flush();
         driver.quit();
     }
 
@@ -110,7 +110,7 @@ public class ApplicationHooks {
 
         // Attach screenshot to the report
         scenario.attach(sourcePath, "image/png", screenshotName);
-        ExtentReportManager.addScreenCaptureFromPath(Arrays.toString(sourcePath));
+//        ExtentReportManager.addScreenCaptureFromPath(Arrays.toString(sourcePath));
         // If scenario fails, log additional information if needed (already handled here)
         if (scenario.isFailed()) {
             System.out.println("Scenario failed: " + scenario.getName());

@@ -1,8 +1,6 @@
 package com.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -20,12 +18,12 @@ public class PharmacyPortalPage {
     private By lastNameInput = By.xpath("//input[@name='lastname']");
     private By cityInput = By.xpath("//input[@name='city']");
     private By stateInput = By.xpath("//input[@name='state']");
-    private By zipCodeInput = By.xpath("//input[@name='zip_code']");
-    private By phoneNumberInput =By.xpath("//input[@name='phone']");
-    private By birthDateInput = By.xpath("//input[@name='dob']");
+    public By zipCodeInput = By.xpath("//input[@name='zip_code']");
+    public By phoneNumberInput =By.xpath("//input[@name='phone']");
+    public By birthDateInput = By.xpath("//input[@name='dob']");
     private By hpIdInput = By.xpath("//input[@name='hpid']");
 
-    private By searchButton = By.xpath("//button[@aria-label='search button']");
+    private By searchButton = By.cssSelector("button[aria-label='search button']");
 
     private By advancedPopup = By.xpath("//div[contains(@class,'src-routes-PharmacistPortal-LandingPage-components-units-SearchPatient-__popUp___1ABAd')]");
     private By errorPopup = By.id("swal2-content");
@@ -134,5 +132,15 @@ public class PharmacyPortalPage {
         phoneNumberField.sendKeys(hpId);
 
     }
+    public String getTooltipErrorMessage(By fieldLocator) {
+        WebElement field = driver.findElement(fieldLocator);
+
+        field.sendKeys(Keys.TAB);
+
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        return (String) jsExecutor.executeScript("return arguments[0].validationMessage;", field);
+    }
+
+
 
 }

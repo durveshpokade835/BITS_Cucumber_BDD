@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import com.pages.LoginPage;
+//import com.pages.MtrReportPage;
 import io.cucumber.java.en.*;
 import org.testng.Assert;
 import com.pages.PharmacyPortalPage;
@@ -10,7 +11,8 @@ public class PharmacistPortalSteps {
 
 
     private PharmacyPortalPage pharmacyPortalPage = new PharmacyPortalPage(DriverFactory.getDriver());
-    LoginPage loginPage = new LoginPage(DriverFactory.getDriver());
+    private LoginPage loginPage = new LoginPage(DriverFactory.getDriver());
+
 
     @Given("user has already logged in to application")
     public void user_has_already_logged_in_to_application(io.cucumber.datatable.DataTable credentials) {
@@ -172,5 +174,36 @@ public class PharmacistPortalSteps {
         System.out.println("Phone Number in result is: " + hpId);
     }
 
+    @Then("Tooltip error message: {string} should display for Zip Code")
+    public void tooltipErrorMessageShouldDisplayForZipCode(String expectedErrMsg) {
+        String actualErrMsg = pharmacyPortalPage.getTooltipErrorMessage(pharmacyPortalPage.zipCodeInput);
+//        Assert.assertEquals( expectedErrMsg, actualErrMsg,"Tooltip message did not match!");
+//        org.junit.Assert.assertEquals(expectedErrMsg, actualErrMsg);
+        org.junit.Assert.assertEquals("Tooltip message did not match!", expectedErrMsg, actualErrMsg);
+    }
+
+    @Then("Tooltip error message: {string} should display for Birth Date")
+    public void tooltipErrorMessageShouldDisplayForBirthDate(String expectedErrMsg) {
+        String actualErrMsg = pharmacyPortalPage.getTooltipErrorMessage(pharmacyPortalPage.birthDateInput);
+//        Assert.assertEquals( expectedErrMsg, actualErrMsg,"Tooltip message did not match!");
+//        org.junit.Assert.assertEquals(expectedErrMsg, actualErrMsg);
+        org.junit.Assert.assertEquals("Tooltip message did not match!", expectedErrMsg, actualErrMsg);
+    }
+
+    @Then("Tooltip error message: {string} should display for Phone Number")
+    public void tooltipErrorMessageShouldDisplayForPhoneNumber(String expectedErrMsg) {
+        String actualErrMsg = pharmacyPortalPage.getTooltipErrorMessage(pharmacyPortalPage.phoneNumberInput);
+//        Assert.assertEquals( expectedErrMsg, actualErrMsg,"Tooltip message did not match!");
+//        org.junit.Assert.assertEquals(expectedErrMsg, actualErrMsg);
+        org.junit.Assert.assertEquals("Tooltip message did not match!", expectedErrMsg, actualErrMsg);
+    }
+
+
+//    @Then("the tooltip error pop up should appear {string}")
+//    public void theTooltipErrorPopUpShouldAppear(String toolTipError) {
+//        String actualResult = pharmacyPortalPage.getToolTipMessage();
+//        org.junit.Assert.assertTrue(actualResult.contains(toolTipError));
+//        System.out.println("The Tooltip Error message is: " + toolTipError);
+//    }
 
 }
