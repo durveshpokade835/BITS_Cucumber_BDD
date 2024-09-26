@@ -1,5 +1,6 @@
 Feature: Pharmacist Login
 
+  @login @testNG @dev_windows @aut_durvesh
   Scenario: Successful login with valid credentials
     Given the user is on the login page
     When the user enters the valid email "hardstop-pharmacist6@mailinator.com"

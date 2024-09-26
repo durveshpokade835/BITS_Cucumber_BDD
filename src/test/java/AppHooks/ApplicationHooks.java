@@ -113,8 +113,10 @@ public class ApplicationHooks {
 //        ExtentReportManager.addScreenCaptureFromPath(Arrays.toString(sourcePath));
         // If scenario fails, log additional information if needed (already handled here)
         if (scenario.isFailed()) {
+//            scenario.attach(sourcePath, "image/png", sourcePath.toString());
             System.out.println("Scenario failed: " + scenario.getName());
         } else {
+//            scenario.attach(sourcePath, "image/png", sourcePath.toString());
             System.out.println("Scenario passed: " + scenario.getName());
         }
 
