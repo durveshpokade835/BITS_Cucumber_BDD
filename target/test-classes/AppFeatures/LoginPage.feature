@@ -1,3 +1,4 @@
+@loginFeature
 Feature: Pharmacist Login
 
   @login @testNG @dev_windows @aut_durvesh

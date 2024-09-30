@@ -33,6 +33,7 @@ public class PatientReportSteps {
             loginPage.enterEmail("hardstop-pharmacist6@mailinator.com");
             loginPage.enterPassword("Password1#");
             loginPage.clickSignIn();
+//            pharmacyPortalPage.clickAcceptAgreementButton();
             boolean loginVal = loginPage.isDashboardDisplayed();
             Assert.assertTrue(loginVal, "Login was not successful");
             ExtentReportUtil.logPass("User logged in successfully for patient search.");

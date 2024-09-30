@@ -10,6 +10,7 @@ public class PharmacyPortalPage {
 
     private WebDriver driver;
     private WebDriverWait wait;
+    private JavascriptExecutor js;
 
     // By Locators
     private By patientButton = By.xpath("//button[text()='Patient']");
@@ -39,6 +40,7 @@ public class PharmacyPortalPage {
     public PharmacyPortalPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        this.js  = (JavascriptExecutor) driver;
     }
 
     // Page Actions
@@ -82,7 +84,16 @@ public class PharmacyPortalPage {
     }
 
     public void clickAcceptAgreementButton(){
-        wait.until(ExpectedConditions.elementToBeClickable(acceptAgreementButton)).click();
+        js.executeScript("arguments[0].scrollIntoView(true);", acceptAgreementButton);
+        wait.until(ExpectedConditions.elementToBeClickable(acceptAgreementButton));
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(acceptAgreementButton)).click();
+        }catch (org.openqa.selenium.ElementClickInterceptedException e) {
+            js.executeScript("arguments[0].click();", acceptAgreementButton);
+        }
+    }
+    public boolean isLoginUserAgreementPopUpVisible(){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(acceptAgreementPopUp)).isDisplayed();
     }
 
     public boolean isTableVisible(){

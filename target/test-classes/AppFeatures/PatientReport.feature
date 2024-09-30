@@ -1,5 +1,7 @@
+@patientSearch
 Feature: Patient Search Functionality
 
+  @patientSearchDate
   Scenario: Search for a patient by ID and set a review date
     Given User is logged in successfully for patient search
     When User clicks on the Patient button for patient search

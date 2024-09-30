@@ -24,6 +24,10 @@ public class PatientReportPage {
     // Updated locator for Set Review Button
     private By setReviewButton = By.xpath("//button[contains(@class, 'src-routes-PharmacistPortal-LandingPage-components-composites-ViewLetter-__buttonConversation___1tdUr')]");
     private  By loader = By.xpath("//div[@class='src-components-Loading-__code___py_kc']");
+//    private By nextYearLocator = By.xpath(null);
+//    private By prevYearLocator = By.xpath(null);
+    private By nextMonthLocator = By.xpath("//button[contains(@class,'react-datepicker__navigation--next')]");
+    private By prevMonthLocator = By.xpath("//button[contains(@class,'react-datepicker__navigation--previous')]");
 
     public PatientReportPage(WebDriver driver) {
         this.driver = driver;
@@ -41,21 +45,66 @@ public class PatientReportPage {
         wait.until(ExpectedConditions.elementToBeClickable(reportsButton)).click();
     }
 
+//    public void selectDate10DaysBack() {
+//        // Get current date and calculate 10 days back
+//        LocalDate currentDate = LocalDate.now();
+//        LocalDate tenDaysBack = currentDate.minusDays(10);
+//        String dateToSelect = tenDaysBack.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+//
+//        // Open calendar and set the date
+//        WebElement calendar = wait.until(ExpectedConditions.visibilityOfElementLocated(calendarInput));
+//        calendar.clear();
+//        calendar.sendKeys(dateToSelect);
+//
+//        // Select the date from calendar (ensure the date button is selectable after input)
+//        By dateLocator = By.xpath("//div[@aria-label='day-" + tenDaysBack.getDayOfMonth() + "']");
+//        wait.until(ExpectedConditions.elementToBeClickable(dateLocator)).click();
+//    }
+
     public void selectDate10DaysBack() {
         // Get current date and calculate 10 days back
         LocalDate currentDate = LocalDate.now();
         LocalDate tenDaysBack = currentDate.minusDays(10);
-        String dateToSelect = tenDaysBack.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
 
-        // Open calendar and set the date
+        // Open the calendar popup
         WebElement calendar = wait.until(ExpectedConditions.visibilityOfElementLocated(calendarInput));
-        calendar.clear();
-        calendar.sendKeys(dateToSelect);
+        calendar.click();
 
-        // Select the date from calendar (ensure the date button is selectable after input)
+        // Navigate to the correct month and year if needed
+        int monthDifference = tenDaysBack.getMonthValue() - currentDate.getMonthValue();
+        int yearDifference = tenDaysBack.getYear() - currentDate.getYear();
+
+        // Adjust calendar navigation for year difference
+//        while (yearDifference != 0) {
+//            if (yearDifference > 0) {
+//                WebElement nextYearButton = wait.until(ExpectedConditions.elementToBeClickable(nextYearLocator));
+//                nextYearButton.click();
+//                yearDifference--;
+//            } else {
+//                WebElement prevYearButton = wait.until(ExpectedConditions.elementToBeClickable(prevYearLocator));
+//                prevYearButton.click();
+//                yearDifference++;
+//            }
+//        }
+
+        // Adjust calendar navigation for month difference
+        while (monthDifference != 0) {
+            if (monthDifference > 0) {
+                WebElement nextMonthButton = wait.until(ExpectedConditions.elementToBeClickable(nextMonthLocator));
+                nextMonthButton.click();
+                monthDifference--;
+            } else {
+                WebElement prevMonthButton = wait.until(ExpectedConditions.elementToBeClickable(prevMonthLocator));
+                prevMonthButton.click();
+                monthDifference++;
+            }
+        }
+
+        // Select the date (day) from the calendar
         By dateLocator = By.xpath("//div[@aria-label='day-" + tenDaysBack.getDayOfMonth() + "']");
         wait.until(ExpectedConditions.elementToBeClickable(dateLocator)).click();
     }
+
 
     public void clickSetReviewButton() {
         wait.until(ExpectedConditions.elementToBeClickable(setReviewButton)).click();

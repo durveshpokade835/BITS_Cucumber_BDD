@@ -1,3 +1,4 @@
+@advanceSearch
 Feature: Pharmacist Portal Advance Search Feature
 
   Background:

@@ -78,6 +78,9 @@ public class LoginPageSteps {
     public void the_user_should_be_logged_in() {
     try {
         boolean isDashBoardVisible = loginPage.isDashboardDisplayed();
+//        if(pharmacyPortalPage.isLoginUserAgreementPopUpVisible()){
+//            pharmacyPortalPage.clickAcceptAgreementButton();
+//        }
         boolean isTableVisible = pharmacyPortalPage.isTableVisible();
         Assert.assertTrue(isDashBoardVisible);
         ExtentReportUtil.logPass("Test Case Passed.");
@@ -129,6 +132,7 @@ public class LoginPageSteps {
     public void user_clicks_on_login_button() {
         try {
             loginPage.clickSignIn();
+
         } catch (Exception e) {
             ExtentReportUtil.logFail("Test Case Failed " + e.getMessage());
             throw new RuntimeException(e);
