@@ -23,17 +23,21 @@ public class PatientReportPage {
     private By calendarInput = By.xpath("//input[@name='conversationDate']");
     // Updated locator for Set Review Button
     private By setReviewButton = By.xpath("//button[contains(@class, 'src-routes-PharmacistPortal-LandingPage-components-composites-ViewLetter-__buttonConversation___1tdUr')]");
-    private  By loader = By.xpath("//div[@class='src-components-Loading-__code___py_kc']");
-//    private By nextYearLocator = By.xpath(null);
+    public By loader = By.xpath("//div[@class='src-components-Loading-__code___py_kc']");
+    //    private By nextYearLocator = By.xpath(null);
 //    private By prevYearLocator = By.xpath(null);
     private By nextMonthLocator = By.xpath("//button[contains(@class,'react-datepicker__navigation--next')]");
     private By prevMonthLocator = By.xpath("//button[contains(@class,'react-datepicker__navigation--previous')]");
 
+
+    //constructor
     public PatientReportPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
+
+    //Page Actions
     public void enterPatientID(String patientId) {
         WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(patientIdInput));
         input.clear();
