@@ -2,10 +2,15 @@ package stepDefinitions;
 
 import com.pages.LoginPage;
 //import com.pages.MtrReportPage;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import com.pages.PharmacyPortalPage;
 import com.qa.Factory.DriverFactory;
+
+import java.util.List;
+import java.util.Map;
 
 public class PharmacistPortalSteps {
 
@@ -17,7 +22,7 @@ public class PharmacistPortalSteps {
     @Given("user has already logged in to application")
     public void user_has_already_logged_in_to_application(io.cucumber.datatable.DataTable credentials) {
 
-        loginPage.openLoginPage();
+//        loginPage.openLoginPage();
         java.util.List<java.util.Map<String, String>> loginData = credentials.asMaps(String.class, String.class);
         String username = loginData.get(0).get("username");
         String password = loginData.get(0).get("password");
@@ -110,7 +115,7 @@ public class PharmacistPortalSteps {
         String actualResult = pharmacyPortalPage.getResultMessage();
         org.junit.Assert.assertTrue(actualResult.contains(city));
         System.out.println("City Name in result is: " + city);
-        
+
     }
 
     @And("the State {string} should get displayed")
@@ -119,13 +124,13 @@ public class PharmacistPortalSteps {
         String actualResult = pharmacyPortalPage.getResultMessage();
         org.junit.Assert.assertTrue(actualResult.contains("CA"));
         System.out.println("State Name in result is: " + state);
-        
+
     }
 
     @And("User enters {string} as Zip Code")
     public void userEntersAsZipCode(String zipCode) {
         pharmacyPortalPage.enterZipCode(zipCode);
-        
+
     }
 
     @And("the ZipCode {string} should get displayed")
@@ -193,6 +198,28 @@ public class PharmacistPortalSteps {
     @Then("Tooltip error message: {string} should display for Phone Number")
     public void tooltipErrorMessageShouldDisplayForPhoneNumber(String expectedErrMsg) {
         String actualErrMsg = pharmacyPortalPage.getTooltipErrorMessage(pharmacyPortalPage.phoneNumberInput);
+//        Assert.assertEquals( expectedErrMsg, actualErrMsg,"Tooltip message did not match!");
+//        org.junit.Assert.assertEquals(expectedErrMsg, actualErrMsg);
+        org.junit.Assert.assertEquals("Tooltip message did not match!", expectedErrMsg, actualErrMsg);
+    }
+
+    @And("user enters specific field")
+    public void userEntersSpecificField(DataTable table) {
+//        List<String> credentials = table.asList(String.class);
+        List<List<String>> credentials = table.asLists(String.class);
+        pharmacyPortalPage.verifyFields(credentials);
+    }
+
+    @And("the {string} should get displayed")
+    public void theShouldGetDisplayed(String field) {
+        String actualResult = pharmacyPortalPage.getResultMessage();
+        System.out.println(actualResult);
+        org.junit.Assert.assertTrue(actualResult.contains(field));
+    }
+
+    @Then("Tooltip error message: {string} should display for {string}")
+    public void tooltipErrorMessageShouldDisplayFor(String expectedErrMsg, String fieldLocator) {
+        String actualErrMsg = pharmacyPortalPage.getTooltipErrorMessage(By.xpath(fieldLocator));
 //        Assert.assertEquals( expectedErrMsg, actualErrMsg,"Tooltip message did not match!");
 //        org.junit.Assert.assertEquals(expectedErrMsg, actualErrMsg);
         org.junit.Assert.assertEquals("Tooltip message did not match!", expectedErrMsg, actualErrMsg);

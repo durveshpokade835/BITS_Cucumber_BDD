@@ -28,59 +28,43 @@ public class LoginPage {
     }
 
     // 3. page actions: features(behavior) of the page the form of methods:
+//-----------------------------------------------------------------------------------------------------------------------
 
-    public String getLoginPageTitle() {
-        return driver.getTitle();
+    public void openLoginPage(String link) {
+        driver.get(link);
     }
 
     public String getCurrentUrl() {
-//	        return wait.until(ExpectedConditions.urlContains("pharmacist-portal"));
-        String CurrentUrl = driver.getCurrentUrl();
-        return CurrentUrl;
-    }
-
-//		public boolean isLoginPageDisplayed() {
-//	        return wait.until(ExpectedConditions.urlContains("https://pharmacist-dev.arine.io/"));
-//	    }
-
-    public void openLoginPage() {
-        driver.get("https://pharmacist-dev.arine.io/");
+        return driver.getCurrentUrl();
     }
 
     public void enterEmail(String email) {
         WebElement emailElement = wait.until(ExpectedConditions.visibilityOfElementLocated(emailId));
-
-//	    	WebElement emailElement = driver.findElement(emailId);
         emailElement.clear();
         emailElement.sendKeys(email);
     }
 
     public void enterPassword(String pwd) {
         WebElement passwordElement = wait.until(ExpectedConditions.visibilityOfElementLocated(password));
-//	    	WebElement passwordElement = driver.findElement(password);
         passwordElement.clear();
         passwordElement.sendKeys(pwd);
     }
 
     public void clickSignIn() {
         WebElement signInElement = wait.until(ExpectedConditions.elementToBeClickable(signIn));
-//	    	WebElement signInElement = driver.findElement(signIn);
         signInElement.click();
+    }
+
+    public boolean isDashboardDisplayed() {
+        return wait.until(ExpectedConditions.urlContains("pharmacist-portal"));
     }
 
     public String getErrorMessage() {
         WebElement error = wait.until(ExpectedConditions.visibilityOfElementLocated(errorMsg));
-//	    	WebElement error = driver.findElement(errorMsg);
         return error.getText();
     }
 
-    public boolean isDashboardDisplayed() {
-//		wait.until(ExpectedConditions.visibilityOfElementLocated())
-        return wait.until(ExpectedConditions.urlContains("pharmacist-portal"));
-//	    	boolean DashBoardUrl = driver.getCurrentUrl().contains("pharmacist-portal");
-//			System.out.println(DashBoardUrl);
-//	    	return DashBoardUrl;
-    }
+    //-----------------------------------------------------------------------------------------------------------------
 
 
 }

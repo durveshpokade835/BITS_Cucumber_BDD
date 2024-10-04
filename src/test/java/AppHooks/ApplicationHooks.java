@@ -61,24 +61,23 @@ import java.util.Arrays;
 import java.util.Properties;
 
 //import com.qa.util.ExtentReportManager;
+import io.cucumber.java.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import com.qa.Factory.DriverFactory;
 import com.qa.util.ConfigReader;
-
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
+import stepDefinitions.LoginPageSteps;
 
 public class ApplicationHooks {
 
     private DriverFactory driverFactory;
     private WebDriver driver;
-//    private ExtentReportManager extentReportManager;
+    //    private ExtentReportManager extentReportManager;
     private ConfigReader configReader;
     Properties prop;
+    LoginPageSteps loginPageSteps = new LoginPageSteps();
 
 
     @Before(order = 0)
@@ -95,6 +94,12 @@ public class ApplicationHooks {
 //        extentReportManager = new ExtentReportManager();
 //        extentReportManager.initExtentReports();
     }
+
+//    @Before(order = 2)
+//    public void loginToApplication() {
+//        System.out.println("Executing Before Hook - Logging into the application");
+//        loginPageSteps.theUserIsOnTheLoginPage();
+//    }
 
     @After(order = 0)
     public void quitBrowser() {

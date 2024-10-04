@@ -9,8 +9,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
+import java.util.Map;
+
 
 public class PatientDataValidationPage {
     private WebDriver driver;
@@ -58,10 +61,82 @@ public class PatientDataValidationPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(PatientDataValidationTableLocator));
     }
 
-//    public void verifyData(String firstName, String lastName, String sex, String age) {
+    //    public void verifyData(String firstName, String lastName, String sex, String age) {
 //
 //
 //    }
+    public void verifyData(Map<String, String> credentials) {
+        String expectedFirstName = credentials.get("FirstName");
+        String expectedLastName = credentials.get("LastName");
+        String expectedHosp30d = credentials.get("Hosp 30d");
+        String expectedDOB = credentials.get("DOB");
+        String expectedSex = credentials.get("Sex");
+        String expectedAge = credentials.get("Age");
+        String expectedPtLang = credentials.get("Pt. Lang.");
+        String expectedInsurance = credentials.get("Insurance #");
+        String expectedInsuranceCo = credentials.get("Insurance Co.");
+
+        // Fetching actual data from the UI fields
+        String actualFirstName = getFirstName();
+        String actualLastName = getLastName();
+        String actualHosp30d = getHosp30d();
+        String actualDOB = getDOB();
+        String actualSex = getSex();
+        String actualAge = getAge();
+        String actualPtLang = getPtLang();
+        String actualInsurance = getInsurance();
+        String actualInsuranceCo = getInsuranceCo();
+
+        if (expectedFirstName != null && !expectedFirstName.isEmpty()) {
+            Assert.assertEquals(actualFirstName, expectedFirstName, "First Name doesn't match");
+        } else {
+            System.out.println("Skipping validation for First Name as the expected value is null or empty.");
+        }
+
+        if (expectedLastName != null && !expectedLastName.isEmpty()) {
+            Assert.assertEquals(actualLastName, expectedLastName, "Last Name doesn't match");
+        } else {
+            System.out.println("Skipping validation for Last Name as the expected value is null or empty.");
+        }
+        if (actualHosp30d != null && !actualHosp30d.isEmpty()) {
+            Assert.assertEquals(actualHosp30d, expectedHosp30d, "Hospital 30d doesn't match");
+        } else {
+            System.out.println("Skipping validation for Hospital 30d as the expected value is null or empty.");
+        }
+        if (actualDOB != null && !actualDOB.isEmpty()) {
+            Assert.assertEquals(actualDOB, expectedDOB, "DOB doesn't match");
+        } else {
+            System.out.println("Skipping validation for DOB as the expected value is null or empty.");
+        }
+
+        if (expectedSex != null && !expectedSex.isEmpty()) {
+            Assert.assertEquals(actualSex, expectedSex, "Sex doesn't match");
+        } else {
+            System.out.println("Skipping validation for Sex as the expected value is null or empty.");
+        }
+
+        if (expectedAge != null && !expectedAge.isEmpty()) {
+            Assert.assertEquals(actualAge, expectedAge, "Age doesn't match");
+        } else {
+            System.out.println("Skipping validation for Age as the expected value is null or empty.");
+        }
+        if (actualPtLang != null && !actualPtLang.isEmpty()) {
+            Assert.assertEquals(actualPtLang, expectedPtLang, "PtLang doesn't match");
+        } else {
+            System.out.println("Skipping validation for expectedPtLang as the expected value is null or empty.");
+        }
+        if (actualInsurance != null && !actualInsurance.isEmpty()) {
+            Assert.assertEquals(actualInsurance, expectedInsurance, "Insurance Number doesn't match");
+        } else {
+            System.out.println("Skipping validation for Insurance Number as the expected value is null or empty.");
+        }
+        if (actualInsuranceCo != null && !actualInsuranceCo.isEmpty()) {
+            Assert.assertEquals(actualInsuranceCo, expectedInsuranceCo, "Insurance Company doesn't match");
+        } else {
+            System.out.println("Skipping validation for Insurance Co as the expected value is null or empty.");
+        }
+
+    }
 
     public String getFirstName() {
         return driver.findElement(firstNameLocator).getAttribute("value");
@@ -98,4 +173,6 @@ public class PatientDataValidationPage {
     public String getInsuranceCo() {
         return driver.findElement(insuranceCoLocator).getAttribute("value");
     }
+
+
 }

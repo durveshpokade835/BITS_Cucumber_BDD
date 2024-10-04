@@ -1,26 +1,24 @@
 @loginFeature
 Feature: Pharmacist Login
 
-  @login @testNG @dev_windows @aut_durvesh
-  Scenario: Successful login with valid credentials
-    Given the user is on the login page
-    When the user enters the valid email "hardstop-pharmacist6@mailinator.com"
-    And valid password "Password1#"
+
+  @Setup @login
+  Scenario Outline: SETUP: Open Application And Login to the System
+    Given the user is on the login page "https://pharmacist-dev.arine.io/"
+    When User login with "<userName>" and "<password>"
     And user clicks on Login button
     Then the user should be logged in
+    Examples:
+      | userName                            | password   |
+      | hardstop-pharmacist6@mailinator.com | Password1# |
 
 
-  Scenario: Login with invalid password and verify error message
-
-    Given the user is on the login page
-    When the user enters the valid email "hardstop-pharmacist6@mailinator.com"
-    And the user enters invalid password "InvalidPassword"
+  Scenario Outline: SETUP: Open Application And Login to the System
+    Given the user is on the login page "https://pharmacist-dev.arine.io/"
+    When User login with "<userName>" and "<password>"
     And user clicks on Login button
-    Then an error message should be displayed "Wrong username/password"
-
-  Scenario: Login with invalid email and verify error message
-    Given the user is on the login page
-    When the user enters an invalid email "hardstop-pharmacist6@mailinator.co"
-    And valid password "Password1#"
-    And user clicks on Login button
-    Then I should see an error message "User not found"
+    Then the user should see an error message "<errorMsg>"
+    Examples:
+      | userName                            | password        | errorMsg                |
+      | hardstop-pharmacist6@mailinator.com | InvalidPassword | Wrong username/password |
+      | hardstop-pharmacist6@mailinator.co  | Password1#      | User not found          |
