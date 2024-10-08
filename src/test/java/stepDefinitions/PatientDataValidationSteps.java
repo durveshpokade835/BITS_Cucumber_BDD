@@ -22,27 +22,11 @@ public class PatientDataValidationSteps {
     private PatientReportPage patientReportPage = new PatientReportPage(DriverFactory.getDriver());
     private PatientDataValidationPage patientDataValidationPage = new PatientDataValidationPage(DriverFactory.getDriver());
 
-    @Given("user has already logged in to application and is on patient page")
-    public void isPatientDashboard() {
-        try {
-            DriverFactory.getDriver().get("https://pharmacist-dev.arine.io/");
-            loginPage.enterEmail("hardstop-pharmacist6@mailinator.com");
-            loginPage.enterPassword("Password1#");
-            loginPage.clickSignIn();
-//            pharmacyPortalPage.clickAcceptAgreementButton();
-            pharmacyPortalPage.clickPatientButton();
-            boolean loginVal = loginPage.isDashboardDisplayed();
-            Assert.assertTrue(loginVal, "Login was not successful");
-
-        } catch (Exception e) {
-
-            throw e; // Re-throw exception to fail the test
-        }
-    }
 
     @And("user has entered credentials {string}")
     public void userHasEnteredCredentials(String patientId) {
         patientReportPage.enterPatientID(patientId);
+        patientReportPage.clickSearchButton();
         System.out.println("Entered User ID: " + patientId);
     }
 

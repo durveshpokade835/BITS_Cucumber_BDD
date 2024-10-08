@@ -13,4 +13,5 @@ Feature: Patient Search Functionality
     Then User clicks on the Date Conversation button
     Examples:
       | userName                            | password   | patientId                            | number of days |
+      | hardstop-pharmacist6@mailinator.com | Password1# | 537a6caf-8df4-4da5-8238-f74030728005 | 10             |
       | hardstop-pharmacist6@mailinator.com | Password1# | da7e9e65-a268-4ea2-adc6-a2d8cd1b64d9 | 10             |

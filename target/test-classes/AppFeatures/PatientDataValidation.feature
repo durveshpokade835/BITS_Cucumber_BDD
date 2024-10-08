@@ -13,7 +13,6 @@ Feature: Validating Patients Data, using DataTables and examples
 
   @PatientValScenario
   Scenario Outline: Search for a patient by ID and validate the information
-#    Given user has already logged in to application and is on patient page
     Given the user is on the login page "https://pharmacist-dev.arine.io/"
     When User login with "<userName>" and "<password>"
     And user clicks on Login button

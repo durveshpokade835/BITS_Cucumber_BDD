@@ -15,9 +15,7 @@ public class DragAndDropSteps {
 
     @Given("User is on the table page")
     public void user_is_on_the_table_page() {
-
         dragAndDropPage.clickTasksButton();
-
     }
 
     @When("User drags the {string} and drops it on {string}")

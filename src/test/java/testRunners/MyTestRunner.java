@@ -11,7 +11,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
         features = {"src/test/resources/AppFeatures"},
         glue = {"stepDefinitions", "AppHooks"},
-        tags = "@DragAndDrop",
+//        tags = "@DragAndDrop",
         plugin = {"pretty",
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
                 "html:target/cucumber-reports.html"

@@ -32,7 +32,7 @@ public class DragAndDropPage {
 //    private By destinatioColumnButton = By.xpath("//div[text()='Status']/parent::div/following-sibling::div/child::button[1]");
     private By threeDotButtonLocator = By.xpath("//button[contains(@class,'mantine-4nqhrt')]");
     private By showHideLocator = By.xpath("//button[@aria-label='Show/Hide columns']");
-    private By showHideDropDownLocator = By.xpath("//div[contains(@class,'mantine-q49eb5')]");
+    private By showHideDropDownLocator = By.xpath("//button[@class='mantine-Menu-item mantine-1okg4gn']");
     private By resetBtnLocator = By.xpath("(//button[contains(@class,'mantine-Button-root')])[2]");
 
     //constructor
@@ -73,10 +73,12 @@ public class DragAndDropPage {
     }
 
     public void dragAndDropInList(String column1, String column2) {
+
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(showHideDropDownLocator));
         By sourceColumnButton = By.xpath("//label[text()='" + column1 + "']/parent::div/parent::div/parent::div/preceding-sibling::button");
         By destinationColumnButton = By.xpath("//label[text()='" + column2 + "']/parent::div/parent::div/parent::div/preceding-sibling::button");
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(showHideDropDownLocator));
+
         WebElement sourceColumn = driver.findElement(sourceColumnButton);
         WebElement destinationColumn = driver.findElement(destinationColumnButton);
         act.dragAndDrop(sourceColumn, destinationColumn).perform();

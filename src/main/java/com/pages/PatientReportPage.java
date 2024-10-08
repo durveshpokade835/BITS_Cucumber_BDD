@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class PatientReportPage {
 
@@ -17,17 +16,20 @@ public class PatientReportPage {
 
     // Locators
     private By patientIdInput = By.xpath("//input[@type='search']");
-    private By reportsButton = By.xpath("//div[contains(text(),'Reports')]");
+    private By reportsButtonLocator = By.xpath("//div[contains(text(),'Reports')]");
     private By mtmReportsButton = By.xpath("//button[@data-tip='Reports for MTM']");
-    private By cmrRadioButton = By.id("interactionReviewType_CMR");
+    private By cmrRadioButton = By.xpath("//span[normalize-space()='CMR']");
     private By calendarInput = By.xpath("//input[@name='conversationDate']");
     private By setReviewButton = By.xpath("//button[contains(@class, 'src-routes-PharmacistPortal-LandingPage-components-composites-ViewLetter-__buttonConversation___1tdUr')]");
+    //    public By loader = By.xpath("//div[@class='src-components-Loading-__code___py_kc']");
     public By loader = By.xpath("//div[@class='src-components-Loading-__code___py_kc']");
     //    private By nextYearLocator = By.xpath(null);
 //    private By prevYearLocator = By.xpath(null);
     private By nextMonthLocator = By.xpath("//button[contains(@class,'react-datepicker__navigation--next')]");
     private By prevMonthLocator = By.xpath("//button[contains(@class,'react-datepicker__navigation--previous')]");
     private By newVal = By.xpath("//button[@class='src-routes-PharmacistPortal-LandingPage-components-MenuBar-__regularButton___19gWx']/following-sibling::span");
+    private By searchButtonLocator = By.id("searchPatient");
+
 
     //constructor
     public PatientReportPage(WebDriver driver) {
@@ -41,11 +43,29 @@ public class PatientReportPage {
         WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(patientIdInput));
         input.clear();
         input.sendKeys(patientId);
+
+    }
+
+    public void clickSearchButton() {
+        try {
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(loader));
+            wait.until(ExpectedConditions.elementToBeClickable(searchButtonLocator)).click();
+        } catch (Exception e) {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(loader));
+            wait.until(ExpectedConditions.elementToBeClickable(searchButtonLocator)).click();
+
+        }
+
     }
 
     public void clickReportsButton() {
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(loader));
-        wait.until(ExpectedConditions.elementToBeClickable(reportsButton)).click();
+        try {
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(loader));
+            wait.until(ExpectedConditions.elementToBeClickable(reportsButtonLocator)).click();
+        } catch (Exception e) {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(loader));
+            wait.until(ExpectedConditions.elementToBeClickable(reportsButtonLocator)).click();
+        }
     }
 
     public void clickMTMReportButton() {

@@ -41,8 +41,8 @@ public class PatientReportSteps {
     public void userClicksReportsButtonMTMReportsButtonAndSelectsCMRReviewType() {
         try {
             patientReportPage.clickReportsButton();
-//            patientReportPage.clickMTMReportButton();
-//            patientReportPage.selectsCMRButton();
+            patientReportPage.clickMTMReportButton();
+            patientReportPage.selectsCMRButton();
         } catch (Exception e) {
             throw e;
         }
